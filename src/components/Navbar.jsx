@@ -7,22 +7,24 @@ export default function Navbar () {
     const [show, setShow] = useState(true)
 
     return (
-        <header className={clsx([
-        ], "flex justify-between items-center p-4 bg-beige z-30")}>
+        <>
+            <div onClick={() => setShow(!show)} className={clsx([show ? "" : "hidden"], "fixed inset-0 bg-black/50 z-50")} />
+            <header className={clsx([
+        ], "flex justify-between items-center p-4 z-30")}>
             <button>
                 <h3>De las raíces a tus manos</h3>
             </button>
-            <button className="md:hidden" onClick={() => setShow(!show)}>
+            <button className="lg:hidden" onClick={() => setShow(!show)}>
                 <Bars3Icon width={30} />
             </button>
             <div className={clsx([
                 show ? "right-0" : "-right-full"
-            ], "flex flex-col fixed transition-all top-0 duration-300 min-h-full w-50 p-4 bg-beige z-50 md:static md:h-auto md:w-auto md:p-0 md:flex-row gap-10")}>
+            ], "flex flex-col fixed transition-all top-0 duration-300 h-full min-h-dvw w-50 md:w-75 p-4 bg-beige lg:bg-transparent z-50 lg:static lg:min-h-auto lg:w-auto lg:p-0 lg:flex-row gap-10 lg:gap-4 lg:items-center")}>
                 <button onClick={() => setShow(!show)} className="absolute right-2 top-2 md:hidden">
                     <XMarkIcon width={45}/>
                 </button>
-                <nav>
-                    <ul className="flex flex-col md:flex-row">
+                <nav className="grow">
+                    <ul className="flex flex-col lg:flex-row gap-8 mt-16 lg:mt-0">
                         <li>Beneficios</li>
                         <li>Ingredientes</li>
                         <li>Cómo usar</li>
@@ -30,10 +32,11 @@ export default function Navbar () {
                         <li>Contacto</li>
                     </ul>
                 </nav>
-                <button>
+                <button className="bg-primary p-2 text-light rounded-lg">
                     Comprar ahora
                 </button>
             </div>
         </header>
+        </>
     )
 }
